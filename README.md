@@ -25,6 +25,10 @@ Originalni podaci nisu bili pogodni za analizu korišćenu u ovom istraživanju,
 ### Određivanje nezavisnih varijabli
 
 Nezavisne varijable su delimično određene intuitivno, a delimično korišćenjem matrice korelacije. Na taj način je izbegnut problem multikolinearnosti, prilikom kog nezavisne promenljive imaju visok stepen korelacije. 
+
+Korelaciona matrica: 
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/korelaciona_samo_iz_modela.JPG "Korelaciona matrica")
+
 Na osnovu ovih metoda, izabrane su sledeće promeljive:
 - $broj\_asova
 - $duple\_servis\_greske 
@@ -32,8 +36,6 @@ Na osnovu ovih metoda, izabrane su sledeće promeljive:
 - $osvojenih\_drugih\_servisa
 - $sacuvanih_brejk_lopti_modified
 
-Korelaciona matrica: 
-![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/korelaciona_samo_iz_modela.JPG "Korelaciona matrica")
 
 
 
