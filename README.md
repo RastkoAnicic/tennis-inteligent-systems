@@ -1,6 +1,6 @@
-## Synopsis
+## O projektu
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Istraživanje predstavlja primenu logističke regresije na sportske rezultate, konkretno u tenisu. Podaci korišćeni u istraživanju su javno dostupni datasetovi u vidu .csv fajlova preuzeti sa sajta [Tennis Abstract]: http://www.tennisabstract.com/
 
 ## Code Example
 
