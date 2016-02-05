@@ -52,6 +52,7 @@ Na osnovu prethodnih koraka, generisemo model:
 _Summary_ modela je prikazan na sledecoj slici:
 
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/logisticki_model_summary.jpg "Logisticki model")
+
 ------
 ### Testiranje modela i predstavljanje rezultata
 
@@ -79,6 +80,8 @@ Total accuracy | 0.7204017
 Total error | 0.2795983
 AUC | 0.7932242
 
+Receiver Operator Characteristic kriva
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP%20FP.png "ROC kriva")
 
 ## Zaključak i analiza rezultata
 
@@ -87,9 +90,8 @@ Racio deljenja seta je iznosio 0.65 zbog većeg brojeg podataka koje smo imali n
 
 Rezultati su pokazali da model precizno određuje ishod pobednika u 72% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 |pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% |slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 22 odsto.
 
-_Treshold_ vrednost je postavljena na 0.56. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika.
+**Treshold** vrednost je postavljena na 0.56. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika. 
 
 Parametri **sensitivity** i **specificity** nam pomažu da utvrdimo koliko smo dobro klasifikovali igrače. Sensitivity meri procenat koliko smo zapravo gubitnika klasifikovali kao gubitnike, dok specificity meri procenat pobednika klasifikovanih kao pobednike. 
 
-
-A short snippet describing the license (MIT, Apache, etc.)
+**ROC kriva** nam pomaže pri odabiru _treshold_ vrednosti uz pomoć _sensitivity_ i _specificity_ parametara. Što je veća _treshold_  vrednost (bliža (0,0)), veća je i _specificity_, a niža _sensitivity_. Manja _treshold_ je bliža (1,1), veća _sensitivity_ a manja _specificity_. Sada treba odabrati šta nam više odgovara za model. 
