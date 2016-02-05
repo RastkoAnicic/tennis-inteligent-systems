@@ -41,7 +41,20 @@ Na osnovu ovih metoda, izabrane su sledeće promeljive:
 
 ### Generisanje modela
 
+Na osnovu prethodnih koraka, generisemo model: 
 
+</p>
+
+<pre><code> LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
+	+ osvojenih_drugih_servisa + sacuvanih_br_lopti_modified + 
+		broj_asova + duple_servis_greske , data = dataFinal, family=binomial)
+</code></pre>
+
+<p>
+
+_Summary_ modela je prikazan na sledecoj slici:
+
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/logisticki_model_summary.jpg "Logisticki model")
 
 ### Testiranje modela i tumačenje rezultata
 
