@@ -88,7 +88,9 @@ Receiver Operator Characteristic kriva
 Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
 Racio deljenja seta je iznosio 0.65 zbog većeg brojeg podataka koje smo imali na raspolaganju. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
 
-Rezultati su pokazali da model precizno određuje ishod pobednika u 72% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 |pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% |slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 22 odsto.
+Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (njih četiri su obeležene sa tri zvezdice, dok jedna ima tačku).
+
+Rezultati su pokazali da model precizno određuje ishod pobednika u 72% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 22 odsto.
 
 **Treshold** vrednost je postavljena na 0.56. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika. 
 
