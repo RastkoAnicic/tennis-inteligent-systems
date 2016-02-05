@@ -16,7 +16,7 @@ Prilikom izrade projekta, pokriveni su sledeći koraci:
 
 ### Prikupljanje podataka
 
-Podaci su dostupni svima i prikupljeni su sa sajta [Tennis Abstract](http://www.tennisabstract.com/ "Tennis Abstract") čiji je autor [Jeff Sackmann](http://www.jeffsackmann.com/), sportski analitičar i statističar. U pitanu su .csv fajlovi koji sadrže statistiku mečeva sa svih _Masters_ i _Gren slem_ turnira od 1968. godine. Budući da se dinamika igre tenisa promenila kroz godine i da svaki originalni _dataset_ sadrži oko 3000 observacija, ovo istraživanje uključuje statistiku igrača iz mečeva odigranih 2014. i 2015. godine. Prvobitna ideja je bila da to bude trening set, a da test set bude 2016. godina. Međutim, premalo podataka postoji za ovu godinu, budući da je rad realizovan krajem januara i samo tri turnira su odigrana do tada.
+Podaci su dostupni svima i prikupljeni su sa sajta [Tennis Abstract](http://www.tennisabstract.com/ "Tennis Abstract") čiji je autor [Jeff Sackmann](http://www.jeffsackmann.com/), sportski analitičar i statističar. U pitanјu su .csv fajlovi koji sadrže statistiku mečeva sa svih _Masters_ i _Gren slem_ turnira od 1968. godine. Budući da se dinamika igre tenisa promenila kroz godine i da svaki originalni _dataset_ sadrži oko 3000 observacija, ovo istraživanje uključuje statistiku igrača iz mečeva odigranih 2014. i 2015. godine. Prvobitna ideja je bila da to bude trening set, a da test set bude 2016. godina. Međutim, premalo podataka postoji za ovu godinu, budući da je rad realizovan krajem januara i samo tri turnira su odigrana do tada.
 
 ### Obrada podataka na odgovarajući način
 
