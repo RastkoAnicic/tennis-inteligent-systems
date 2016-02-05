@@ -12,6 +12,7 @@ Prilikom izrade projekta, pokriveni su sledeći koraci:
 - Određivanje nezavisnih varijabli
 - Generisanje modela
 - Testiranje modela i tumačenje rezultata
+- Zaključak i analiza rezultata
 
 ### Prikupljanje podataka
 
@@ -36,30 +37,59 @@ Na osnovu ovih metoda, izabrane su sledeće promeljive:
 - $osvojenih\_drugih\_servisa
 - $sacuvanih_brejk_lopti_modified
 
-
-
-
+------
 ### Generisanje modela
 
 Na osnovu prethodnih koraka, generisemo model: 
 
-</p>
 
 <pre><code> LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
 	+ osvojenih_drugih_servisa + sacuvanih_br_lopti_modified + 
 		broj_asova + duple_servis_greske , data = dataFinal, family=binomial)
 </code></pre>
 
-<p>
 
 _Summary_ modela je prikazan na sledecoj slici:
 
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/logisticki_model_summary.jpg "Logisticki model")
+------
+### Testiranje modela i predstavljanje rezultata
 
-### Testiranje modela i tumačenje rezultata
+Na osnovu modela predviđamo podatke:
+
+<pre><code>
+Predvidjanje = predict(LogistickiModel, type = "response", newdata = test)
+	tabela = table(test$pobedio, Predvidjanje > 0.56)
+</code></pre>
+
+Dobijamo sledeću matricu konfuzije:
+
+    | FALSE | TRUE
+--- | --- | ---
+0 | 768 | 178
+1 | 351 | 595
+
+Sa parametrima modela:
+
+Parametar | Vrednost 
+--- | --- 
+Sensitivity | 0.6289641
+Specificity | 0.8118393 
+Total accuracy | 0.7204017
+Total error | 0.2795983
+AUC | 0.7932242
 
 
+## Zaključak i analiza rezultata
 
-## License
+Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
+Racio deljenja seta je iznosio 0.65 zbog većeg brojeg podataka koje smo imali na raspolaganju. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
+
+Rezultati su pokazali da model precizno određuje ishod pobednika u 72% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 |pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% |slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 22 odsto.
+
+_Treshold_ vrednost je postavljena na 0.56. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika.
+
+Parametri **sensitivity** i **specificity** nam pomažu da utvrdimo koliko smo dobro klasifikovali igrače. Sensitivity meri procenat koliko smo zapravo gubitnika klasifikovali kao gubitnike, dok specificity meri procenat pobednika klasifikovanih kao pobednike. 
+
 
 A short snippet describing the license (MIT, Apache, etc.)
