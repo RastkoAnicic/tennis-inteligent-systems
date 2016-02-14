@@ -129,6 +129,26 @@ Receiver Operator Characteristic kriva
 
 Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. 
 
+<pre><code>
+sumaBlista = randomForest(pobedio ~ osvojenih_prvih_servisa +
+ sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske, data = train, 
+	nodesize = 100, ntree = 200)
+</code></pre>
+
+U ovom modelu _nodesize_ parametar predstavlja isto što i _minbucket_ u CART analizi. Manja nodesize vrednost pravi veća stabla. Sledeći parametar _ntree_ postavlja broj stabala koji se generiše. RandomForest funkcija nema argument _method_ za razliku od rpart funkcije. Zbog toga, kada primenjujemo ovu funkciju za probleme klasifikacije, zavisna promenljiva mora da bude tipa Factor.
+
+Na osnovu Random Forest metode dobijamo sledeće parametre:
+
+    | FALSE | TRUE
+--- | --- | ---
+0 | 506 | 170
+1 | 187 | 489
+
+Parametar | Vrednost 
+--- | --- 
+Total accuracy | 0.7359467
+Total error | 0.2640533
+
 ------
 ## Zaključak i analiza rezultata
 
@@ -137,10 +157,10 @@ Racio deljenja seta je iznosio 0.65 zbog većeg brojeg podataka koje smo imali n
 
 Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (njih četiri su obeležene sa tri zvezdice, dok jedna ima tačku).
 
-Rezultati su pokazali da model precizno određuje ishod pobednika u 72% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 22 odsto.
-
 **Treshold** vrednost je postavljena na 0.56. Izabrana je uz pomoć vrednosti ROC krive. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika. 
 
 Parametri **sensitivity** i **specificity** nam pomažu da utvrdimo koliko smo dobro klasifikovali igrače. Sensitivity meri procenat koliko smo zapravo gubitnika klasifikovali kao gubitnike, dok specificity meri procenat pobednika klasifikovanih kao pobednike. 
 
 **ROC kriva** nam pomaže pri odabiru _treshold_ vrednosti uz pomoć _sensitivity_ i _specificity_ parametara. Što je veća _treshold_  vrednost (bliža (0,0)), veća je i _specificity_, a niža _sensitivity_. Manja _treshold_ je bliža (1,1), veća _sensitivity_ a manja _specificity_. Sada treba odabrati šta nam više odgovara za model. 
+
+Rezultati su pokazali da logistička regresija precizno određuje ishod pobednika u 73.7% slučajeva. Prikupljeni podaci su sadržali mečeve sa 2703 pobednika i isto toliko gubitnika. Dakle, kada bismo tvrdili da su svi teniseri pobedili u meču, bili bismo u pravu u tačno 50% slučajeva. U poređenju sa ovakvim pristupom, dobijeni model je bolji za 23 odsto. On je ujedno i za nijansu bolji od CART i Random Forest modela, mada sva tri pružaju podjednako dobre rezultate.
