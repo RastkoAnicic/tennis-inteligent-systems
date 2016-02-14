@@ -10,7 +10,9 @@ Prilikom izrade projekta, pokriveni su sledeći koraci:
 - Prikupljanje podataka
 - Obrada podataka na odgovarajući način
 - Određivanje nezavisnih varijabli
-- Generisanje modela
+- Generisanje logističkog modela
+- Testiranje modela i tumačenje rezultata
+- Generisanje CART modela
 - Testiranje modela i tumačenje rezultata
 - Zaključak i analiza rezultata
 
@@ -38,7 +40,7 @@ Na osnovu ovih metoda, izabrane su sledeće promeljive:
 - $sacuvanih_brejk_lopti_modified
 
 ------
-### Generisanje modela
+### Generisanje logističkog modela
 
 Na osnovu prethodnih koraka, generisemo model: 
 
@@ -67,22 +69,64 @@ Dobijamo sledeću matricu konfuzije:
 
     | FALSE | TRUE
 --- | --- | ---
-0 | 768 | 178
-1 | 351 | 595
+0 | 545 | 131
+1 | 225 | 451
 
 Sa parametrima modela:
 
 Parametar | Vrednost 
 --- | --- 
-Sensitivity | 0.6289641
-Specificity | 0.8118393 
-Total accuracy | 0.7204017
-Total error | 0.2795983
-AUC | 0.7932242
+Sensitivity | 0.6671598
+Specificity | 0.806213 
+Total accuracy | 0.7366864
+Total error | 0.2633136
+AUC | 0.8125711
 
 Receiver Operator Characteristic kriva
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP%20FP.png "ROC kriva")
 
+------
+### Generisanje CART modela
+
+Stablo smo generisali na sledeći način: 
+
+
+<pre><code> stablo = rpart(pobedio ~ osvojenih_prvih_servisa + 
+	broj_asova + duple_servis_greske + sacuvanih_brejk_lopti_modified, 
+		data = train, method = "class", minbucket = 100)
+</code></pre>
+
+Za razliku od logističkog modela, u CART modelu se javljaju dva nova argumenta. Prvi je _method_ kojim definišemo tip stabla koji nam je potreban. U ovom slučaju pravimo **classification tree**. Drugi argument je _minbucket_ koji ograničava naše stablo. On predstavlja minimalan broj observacija u svakom podsetu. 
+
+------
+### Testiranje modela i predstavljanje rezultata
+
+Izgled stabla:
+
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/[ime stabla].png "Classification Tree")
+
+Dobili smo matricu konfuzije:
+
+    | FALSE | TRUE
+--- | --- | ---
+0 | 479 | 197
+1 | 166 | 510
+
+Sa parametrima modela:
+
+Parametar | Vrednost 
+--- | --- 
+Total accuracy | 0.7315089
+Total error | 0.2684911
+AUC | 0.7831527
+
+Receiver Operator Characteristic kriva
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/[ime slike].png "ROC kriva")
+
+
+Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. 
+
+------
 ## Zaključak i analiza rezultata
 
 Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
