@@ -130,7 +130,7 @@ Receiver Operator Characteristic kriva
 Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. 
 
 <pre><code>
-sumaBlista = randomForest(pobedio ~ osvojenih_prvih_servisa +
+randomForest(pobedio ~ osvojenih_prvih_servisa +
  sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske, data = train, 
 	nodesize = 100, ntree = 200)
 </code></pre>
