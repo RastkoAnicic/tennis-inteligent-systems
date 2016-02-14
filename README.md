@@ -53,7 +53,7 @@ Na osnovu prethodnih koraka, generisemo model:
 
 _Summary_ modela je prikazan na sledecoj slici:
 
-![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/logisticki_model_summary.jpg "Logisticki model")
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/novi_summary.PNG "Logisticki model")
 
 ------
 ### Testiranje modela i predstavljanje rezultata
@@ -127,7 +127,7 @@ Receiver Operator Characteristic kriva
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP FP trees.PNG "ROC kriva")
 
 
-Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. 
+Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. Takođe, Random Forest analiza je pouzdanija prilikom pojave _overfitting_ problema.
 
 <pre><code>
 randomForest(pobedio ~ osvojenih_prvih_servisa +
@@ -153,9 +153,9 @@ Total error | 0.2640533
 ## Zaključak i analiza rezultata
 
 Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
-Racio deljenja seta je iznosio 0.65 zbog većeg brojeg podataka koje smo imali na raspolaganju. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
+Racio deljenja seta je iznosio 0.75 za trening set. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
 
-Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (njih četiri su obeležene sa tri zvezdice, dok jedna ima tačku).
+Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (svaka ima bar dve zvezdice).
 
 **Treshold** vrednost je postavljena na 0.56. Izabrana je uz pomoć vrednosti ROC krive. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika. 
 
