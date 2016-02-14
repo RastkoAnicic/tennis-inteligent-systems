@@ -43,7 +43,7 @@ test$pobedio = as.factor(test$pobedio)
 
 sumaBlista = randomForest(pobedio ~ osvojenih_prvih_servisa +
  sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske, data = train, 
-	nodesize = 100, ntree = 200)
+	nodesize = 100, ntree = 1000)
 
 predvidnjanjeSuma = predict(sumaBlista, newdata = test)
 MatKonf = table(test$pobedio, predvidnjanjeSuma)
