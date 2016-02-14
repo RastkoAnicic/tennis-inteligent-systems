@@ -1,32 +1,12 @@
-data2014 = read.csv("Datasets/2014_final.csv")
-data2015 = read.csv("Datasets/2015_final.csv")
-dataTotal= rbind(data2014,data2015)
-
-
-dataFinal = subset(dataTotal, podloga == "Hard")
-
-
-dataFinal = dataFinal[!grepl("0-6", dataFinal$rezultat),]
-dataFinal = dataFinal[!grepl("6-0", dataFinal$rezultat),]
-
-pom = dataFinal$sacuvanih_brejk_lopti
-dataFinal["sacuvanih_brejk_lopti_modified"] <- pom
-
-
-#Modifikovan parametar sacuvanih_brejk_lopti 
-#da bi to onda imalo smisla..
-
-
-dataFinal$sacuvanih_brejk_lopti_modified[dataFinal$sacuvanih_brejk_lopti_modified==0] <- 1
-
+#First run /modifying_datasets.R
 
 library(caTools)
 
 #Pomocu RNG generisemo seed
 set.seed(10000)
 
-#splitujemo dataset na 65:35
-split = sample.split(dataFinal$pobedio, SplitRatio = 0.65)
+#splitujemo dataset na 75:25
+split = sample.split(dataFinal$pobedio, SplitRatio = 0.75)
 
 train = subset(dataFinal, split == TRUE)
 
@@ -48,8 +28,8 @@ cor(test.set1)
 
 #pravimo model
 LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
-	+ osvojenih_drugih_servisa + sacuvanih_br_lopti_modified + 
-		broj_asova + duple_servis_greske , data = dataFinal, family=binomial)
+	+ sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske
+		 , data = train, family=binomial)
 summary(LogistickiModel)
 
 #testiramo model na novim podacima
@@ -57,7 +37,7 @@ Predvidjanje = predict(LogistickiModel, type = "response", newdata = test)
 tabela = table(test$pobedio, Predvidjanje > 0.56)
 tabela
 
-#izracunavamo parametre modela
+#racunamo parametre modela
 sensitivity = tabela[2,"TRUE"]/(tabela[2,"FALSE"]+tabela[2,"TRUE"])
 sensitivity
 
