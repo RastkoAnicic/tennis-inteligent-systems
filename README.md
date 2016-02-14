@@ -103,9 +103,12 @@ Za razliku od logističkog modela, u CART modelu se javljaju dva nova argumenta.
 
 Izgled stabla:
 
-![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/[ime stabla].png "Classification Tree")
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/Drvo.PNG "Classification Tree")
 
-Dobili smo matricu konfuzije:
+Generisano stablo nam govori da kada je procenat modifikovanog parametra sačuvanih_brejk_lopti veći od 79%, igrač je klasifikovan kao pobednik. Kada je procenat manji od 79%, dolazi do grananja stabla. Tada posmatramo parametar procenat osvojenih prvih servisa. Ako je on manji od 0.4, igrač je klasifikovan kao gubitnik. Ako je veći, dolazi do ponovnog grananja gde se opet posmatra parametar osvojenih prvih servisa. Konačno, ako je procenat ispod 46%, teniser je klasifikovan kao gubitnik, u suprotnom se posmatra kao pobednik.
+Tačnost modela možemo da utvrdimo koristeći matricu konfuzije.
+
+Matrica konfuzije:
 
     | FALSE | TRUE
 --- | --- | ---
@@ -121,7 +124,7 @@ Total error | 0.2684911
 AUC | 0.7831527
 
 Receiver Operator Characteristic kriva
-![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/[ime slike].png "ROC kriva")
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP FP trees.PNG "ROC kriva")
 
 
 Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. 
