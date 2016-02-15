@@ -27,7 +27,7 @@ test.set1=dataFinal[nezavisne1]
 cor(test.set1)
 
 #pravimo model
-LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
+LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa + osvojenih_drugih_servisa
 	+ sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske
 		 , data = train, family=binomial)
 summary(LogistickiModel)
