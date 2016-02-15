@@ -135,7 +135,7 @@ Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, 
 <pre><code>
 randomForest(pobedio ~ osvojenih_prvih_servisa + osvojenih_drugih_servisa +
  sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske, data = train, 
-	nodesize = 100, ntree = 200)
+	nodesize = 100, ntree = 1000)
 </code></pre>
 
 U ovom modelu _nodesize_ parametar predstavlja isto što i _minbucket_ u CART analizi. Manja nodesize vrednost pravi veća stabla. Sledeći parametar _ntree_ postavlja broj stabala koji se generiše. RandomForest funkcija nema argument _method_ za razliku od rpart funkcije. Zbog toga, kada primenjujemo ovu funkciju za probleme klasifikacije, zavisna promenljiva mora da bude tipa Factor.
