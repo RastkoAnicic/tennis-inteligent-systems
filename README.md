@@ -30,7 +30,7 @@ Originalni podaci nisu bili pogodni za analizu korišćenu u ovom istraživanju,
 Nezavisne varijable su delimično određene intuitivno, a delimično korišćenjem matrice korelacije. Na taj način je izbegnut problem multikolinearnosti, prilikom kog nezavisne promenljive imaju visok stepen korelacije. 
 
 Korelaciona matrica: 
-![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/korelaciona_samo_iz_modela.JPG "Korelaciona matrica")
+![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/korelaciona_new_one.PNG "Korelaciona matrica")
 
 Na osnovu ovih metoda, izabrane su sledeće promeljive:
 - $broj\_asova
@@ -42,12 +42,13 @@ Na osnovu ovih metoda, izabrane su sledeće promeljive:
 ------
 ### Generisanje logističkog modela
 
+Dataset korišćen u istraživanju je sadržao 5406 observacija. One su podeljene na trening i test set (u odnosu 75:25) i to 4054 i 1352 observacija respektivno.
 Na osnovu prethodnih koraka, generisemo model: 
 
 
 <pre><code> LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
 	+ osvojenih_drugih_servisa + sacuvanih_br_lopti_modified + 
-		broj_asova + duple_servis_greske , data = dataFinal, family=binomial)
+		broj_asova + duple_servis_greske , data = test, family=binomial)
 </code></pre>
 
 
@@ -69,18 +70,18 @@ Dobijamo sledeću matricu konfuzije:
 
     | FALSE | TRUE
 --- | --- | ---
-0 | 545 | 131
-1 | 225 | 451
+0 | 569 | 107
+1 | 176 | 500
 
 Sa parametrima modela:
 
 Parametar | Vrednost 
 --- | --- 
-Sensitivity | 0.6671598
-Specificity | 0.806213 
-Total accuracy | 0.7366864
-Total error | 0.2633136
-AUC | 0.8125711
+Sensitivity | 0.739645
+Specificity | 0.841716 
+Total accuracy | 0.7906805
+Total error | 0.2093195
+AUC | 0.8808471
 
 Receiver Operator Characteristic kriva
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP%20FP.png "ROC kriva")
@@ -91,7 +92,7 @@ Receiver Operator Characteristic kriva
 Stablo smo generisali na sledeći način: 
 
 
-<pre><code> stablo = rpart(pobedio ~ osvojenih_prvih_servisa + 
+<pre><code> stablo = rpart(pobedio ~ osvojenih_prvih_servisa + osvojenih_drugih_servisa +
 	broj_asova + duple_servis_greske + sacuvanih_brejk_lopti_modified, 
 		data = train, method = "class", minbucket = 100)
 </code></pre>
@@ -112,16 +113,18 @@ Matrica konfuzije:
 
     | FALSE | TRUE
 --- | --- | ---
-0 | 479 | 197
-1 | 166 | 510
+0 | 480 | 196
+1 | 124 | 552
 
 Sa parametrima modela:
 
 Parametar | Vrednost 
 --- | --- 
-Total accuracy | 0.7315089
-Total error | 0.2684911
-AUC | 0.7831527
+Sensitivity | 0.816568
+Specificity | 0.7100592
+Total accuracy | 0.7633136
+Total error | 0.2366864
+AUC | 0.8008747
 
 Receiver Operator Characteristic kriva
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/TP FP trees.PNG "ROC kriva")
@@ -130,7 +133,7 @@ Receiver Operator Characteristic kriva
 Radi poređenja, urađena je i Random Forest analiza koja umesto jednog stabla, generiše više stabala uzimajući svaki put drugačiju kombinaciju observacija. Takođe, Random Forest analiza je pouzdanija prilikom pojave _overfitting_ problema.
 
 <pre><code>
-randomForest(pobedio ~ osvojenih_prvih_servisa +
+randomForest(pobedio ~ osvojenih_prvih_servisa + osvojenih_drugih_servisa +
  sacuvanih_brejk_lopti_modified + broj_asova + duple_servis_greske, data = train, 
 	nodesize = 100, ntree = 200)
 </code></pre>
@@ -141,13 +144,15 @@ Na osnovu Random Forest metode dobijamo sledeće parametre:
 
     | FALSE | TRUE
 --- | --- | ---
-0 | 506 | 170
-1 | 187 | 489
+0 | 512 | 164
+1 | 128 | 548
 
 Parametar | Vrednost 
 --- | --- 
-Total accuracy | 0.7359467
-Total error | 0.2640533
+Sensitivity | 0.8106509
+Specificity | 0.7573964
+Total accuracy | 0.7840237
+Total error | 0.2159763
 
 ------
 ## Zaključak i analiza rezultata
@@ -155,7 +160,7 @@ Total error | 0.2640533
 Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
 Racio deljenja seta je iznosio 0.75 za trening set. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
 
-Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (svaka ima bar dve zvezdice).
+Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (sve imaju četiri zvezdice).
 
 **Treshold** vrednost je postavljena na 0.56. Izabrana je uz pomoć vrednosti ROC krive. Na toj vrednosti se najviše smanjuje greška prilikom klasifikacije u ovom modelu. Da smo uzeli visoku _treshold_ vrednost (>0.9) klasifikovali bismo kao pobednike samo one igrače čija je verovatnoća pobede iznad 90% na osnovu modela. Da smo uzeli malu vrednost, klasifikovali bismo veliki broj pobednika. 
 
