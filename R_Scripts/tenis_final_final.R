@@ -1,4 +1,4 @@
-#First run /modifying_datasets.R
+#Prvo pokrenuti R_Scripts/modifying_datasets.R
 
 library(caTools)
 
