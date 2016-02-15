@@ -16,7 +16,7 @@ train = subset(dataFinal, split == TRUE)
 test = subset(dataFinal, split == FALSE)
 
 # pravimo tree
-stablo = rpart(pobedio ~ osvojenih_prvih_servisa + 
+stablo = rpart(pobedio ~ osvojenih_prvih_servisa + osvojenih_drugih_servisa +
 	broj_asova + duple_servis_greske + sacuvanih_brejk_lopti_modified, 
 		data = train, method = "class", minbucket = 100)
 
@@ -29,6 +29,12 @@ print(MatKonf)
 #Preciznost modela
 Accuracy = (MatKonf[1] + MatKonf[4])/(MatKonf[1]+MatKonf[2]+MatKonf[3]+MatKonf[4])
 print(Accuracy)
+
+sensitivity = MatKonf[4]/(MatKonf[4]+MatKonf[2])
+print(sensitivity) 
+
+specificity = MatKonf[1]/(MatKonf[1]+MatKonf[3])
+print(specificity) 
 
 predvidjanjeROC = predict(stablo, newdata = test)
 
@@ -50,3 +56,8 @@ MatKonf = table(test$pobedio, predvidnjanjeSuma)
 print(MatKonf)
 Accuracy = (MatKonf[1] + MatKonf[4])/(MatKonf[1]+MatKonf[2]+MatKonf[3]+MatKonf[4])
 print(Accuracy)
+sensitivity = MatKonf[4]/(MatKonf[4]+MatKonf[2])
+print(sensitivity) 
+
+specificity = MatKonf[1]/(MatKonf[1]+MatKonf[3])
+print(specificity) 
