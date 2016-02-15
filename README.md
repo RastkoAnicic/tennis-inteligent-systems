@@ -108,7 +108,7 @@ Izgled stabla:
 
 ![alt text](https://github.com/RastkoAnicic/tennis-inteligent-systems/blob/master/Pictures/Drvo.PNG "Classification Tree")
 
-Generisano stablo nam govori da kada je procenat modifikovanog parametra sačuvanih_brejk_lopti veći od 79%, igrač je klasifikovan kao pobednik. Kada je procenat manji od 79%, dolazi do grananja stabla. Tada posmatramo parametar procenat osvojenih prvih servisa. Ako je on manji od 0.4, igrač je klasifikovan kao gubitnik. Ako je veći, dolazi do ponovnog grananja gde se opet posmatra parametar osvojenih prvih servisa. Konačno, ako je procenat ispod 46%, teniser je klasifikovan kao gubitnik, u suprotnom se posmatra kao pobednik.
+Generisano stablo nam govori da kada je procenat modifikovanog parametra sačuvanih_brejk_lopti veći od 79%, igrač je klasifikovan kao pobednik. Kada je procenat manji od 79%, dolazi do grananja stabla. Tada posmatramo parametar procenat osvojenih prvih servisa. Ako je on manji od 0.4, igrač je klasifikovan kao gubitnik. Ako je veći, dolazi do ponovnog grananja gde se opet posmatra parametar osvojenih drugih servisa. Ako je taj parametar veći od 0.2, igrač je pobednik, u suprotnom dolazi do grananja. Opet posmatramo procenat osvojenih prvih servisa. Ako je on manji od 47%, igrač će pobediti, ako je manji posmatramo ponovo procenat drugog servisa. Konačno, ako je ovaj procenat manji od 13%, igrač gubi, u suprotnom pobeđuje.
 Tačnost modela možemo da utvrdimo koristeći matricu konfuzije.
 
 Matrica konfuzije:
