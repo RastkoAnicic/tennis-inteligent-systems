@@ -89,6 +89,7 @@ Receiver Operator Characteristic kriva
 ------
 ### Generisanje CART modela
 
+Dataset korišćen u istraživanju je sadržao 5406 observacija. One su podeljene na trening i test set (u odnosu 75:25) i to 4054 i 1352 observacija respektivno.
 Stablo smo generisali na sledeći način: 
 
 
@@ -101,6 +102,7 @@ Za razliku od logističkog modela, u CART modelu se javljaju dva nova argumenta.
 
 ------
 ### Testiranje modela i predstavljanje rezultata
+
 
 Izgled stabla:
 
@@ -157,8 +159,7 @@ Total error | 0.2159763
 ------
 ## Zaključak i analiza rezultata
 
-Korišćen _dataset_ je sadržao 5406 observacija, od kojih je 1892 predstavljalo test set, a 3514 je predstavljalo trening set.
-Racio deljenja seta je iznosio 0.75 za trening set. Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
+Korišćen _dataset_ je dostupan na sajtu [Tennis Abstract](http://www.tennisabstract.com/ "Tennis Abstract"). Najzahtevniji deo rada je bila sama priprema podataka i odabir relevantnih nezavisnih promenljivih.
 
 Na osnovu matrice korelacije, utvrđene su nezavisne promenljive. Slika na kojoj se vidi _summary_ logističkog modela nam govori da su sve promeljive u našem modelu relevantne (sve imaju četiri zvezdice).
 
