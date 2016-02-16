@@ -48,7 +48,7 @@ Na osnovu prethodnih koraka, generisemo model:
 
 <pre><code> LogistickiModel = glm(pobedio ~ osvojenih_prvih_servisa
 	+ osvojenih_drugih_servisa + sacuvanih_br_lopti_modified + 
-		broj_asova + duple_servis_greske , data = test, family=binomial)
+		broj_asova + duple_servis_greske, family=binomial, data = train)
 </code></pre>
 
 
