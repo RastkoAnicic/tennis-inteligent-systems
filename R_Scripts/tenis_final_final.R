@@ -35,18 +35,18 @@ summary(LogistickiModel)
 #testiramo model na novim podacima
 Predvidjanje = predict(LogistickiModel, type = "response", newdata = test)
 tabela = table(test$pobedio, Predvidjanje > 0.56)
-tabela
+print(tabela)
 
 #racunamo parametre modela
 sensitivity = tabela[2,"TRUE"]/(tabela[2,"FALSE"]+tabela[2,"TRUE"])
-sensitivity
+print(sensitivity)
 
 specificity = tabela[1,"FALSE"]/(tabela[1,"FALSE"]+tabela[1,"TRUE"])
-specificity
+print(specificity)
 
 br.el = tabela[1,"FALSE"]+tabela[2,"FALSE"]+tabela[1,"TRUE"]+tabela[2,"TRUE"]
 ukupna_greska = (tabela[2,"FALSE"] + tabela[1,"TRUE"] )/br.el
-ukupna_greska
+print(ukupna_greska)
 
 
 library(ROCR)
