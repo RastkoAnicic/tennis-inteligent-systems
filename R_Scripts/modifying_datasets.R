@@ -40,14 +40,14 @@ pobednik <- rename(pobednik, c("surface"="podloga","score"="rezultat","w_ace"="b
 merged <- rbind(pobednik,gubitnik)
 
 
-merged = na.omit(merged)
+merged <- na.omit(merged)
 
-br_setova = 1:nrow(merged)
-asdf = as.character(merged$rezultat)
+br_setova <- 1:nrow(merged)
+niz_rezultata <- as.character(merged$rezultat)
 
 for(i in 1:nrow(merged))
 {
- br_setova[i] = length(gregexpr(" ", asdf[i])[[1]]) + 1
+ br_setova[i] = length(gregexpr(" ", niz_rezultata[i])[[1]]) + 1
 
 }
 
