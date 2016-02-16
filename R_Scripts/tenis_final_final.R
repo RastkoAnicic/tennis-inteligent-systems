@@ -1,6 +1,7 @@
 #Prvo pokrenuti R_Scripts/modifying_datasets.R
 
 library(caTools)
+library(ROCR)
 
 #Pomocu RNG generisemo seed
 set.seed(10000)
@@ -48,8 +49,6 @@ br.el = tabela[1,"FALSE"]+tabela[2,"FALSE"]+tabela[1,"TRUE"]+tabela[2,"TRUE"]
 ukupna_greska = (tabela[2,"FALSE"] + tabela[1,"TRUE"] )/br.el
 print(ukupna_greska)
 
-
-library(ROCR)
 ROCRpred = prediction(Predvidjanje ,test$pobedio)
 
 ROCRperf = performance(ROCRpred, "tpr","fpr")
